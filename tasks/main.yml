@@ -185,6 +185,15 @@
   become: yes
   when: zabbix_agent_firewall_enable
 
+- name: "configure firewalld"
+  firewalld:
+    port: 10050/tcp
+    state: enabled
+    permanent: true
+  become: yes
+  notify: reload firewalld
+  when: zabbix_agent_firewalld_enable
+
 - name: "Make sure the zabbix-agent service is running"
   service:
     name: "{{ zabbix_agent_service }}"
