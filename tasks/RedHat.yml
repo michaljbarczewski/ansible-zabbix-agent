@@ -44,7 +44,7 @@
   become: yes
   with_items: "{{ zabbix_agent_packages }}"
   when:
-    - zabbix_repo == "zabbix"
+    - zabbix_repo == "zabbix" or zabbix_repo == "other"
   tags:
     - init
     - zabbix-agent
